@@ -22,6 +22,10 @@
         </ul>
         <button class="btn btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}
+            @if (Auth::user()->avatar)
+                <img src="{{ asset('/storage/'.Auth::user()->avatar) }}" alt="Avatar"
+                     width="30px" class="pb-1">
+            @endif
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             @if(Auth::user()->role_id == 1)
