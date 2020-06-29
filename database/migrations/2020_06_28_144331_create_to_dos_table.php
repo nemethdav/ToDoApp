@@ -21,7 +21,7 @@ class CreateToDosTable extends Migration
             $table->boolean('completed')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->string('photo');
+            $table->boolean('warn')->default(false);
             $table->timestamps();
         });
     }
