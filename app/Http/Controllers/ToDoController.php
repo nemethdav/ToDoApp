@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ToDoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +19,7 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        //
+        return view('todo.index');
     }
 
     /**
@@ -24,13 +29,13 @@ class ToDoController extends Controller
      */
     public function create()
     {
-        //
+        return view('todo.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -41,30 +46,30 @@ class ToDoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\ToDo  $toDo
+     * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
     public function show(ToDo $toDo)
     {
-        //
+        return view('todo.show');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ToDo  $toDo
+     * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
     public function edit(ToDo $toDo)
     {
-        //
+        return view('todo.edit');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ToDo  $toDo
+     * @param \Illuminate\Http\Request $request
+     * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, ToDo $toDo)
@@ -75,7 +80,7 @@ class ToDoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ToDo  $toDo
+     * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
     public function destroy(ToDo $toDo)
