@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoCreateRequest;
 use App\ToDo;
 use Illuminate\Http\Request;
 
@@ -23,6 +24,26 @@ class ToDoController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+
+    public function store(TodoCreateRequest $request)
+//    public function store(Request $request)
+    {
+        $reminder = ($request->reminder == 'on' ? true : false);
+        auth()->user()->todos()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'deadline' => $request->deadline,
+            'reminder' => $reminder
+        ]);
+        return redirect(route('todo.index'))->with('message', 'ToDo sikeresen elmentve!');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -30,17 +51,6 @@ class ToDoController extends Controller
     public function create()
     {
         return view('todo.create');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     /**

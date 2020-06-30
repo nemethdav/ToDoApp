@@ -11,7 +11,7 @@
                 @csrf
                 @method('PATCH')
                 <div class="form-group">
-                    <label for="name">ToDo címe:</label>
+                    <label for="text">ToDo címe:</label>
                     <input type="email" class="form-control form-control-lg" id="name" name="name"
                            placeholder="Nyári gyakorlat beadás">
                 </div>

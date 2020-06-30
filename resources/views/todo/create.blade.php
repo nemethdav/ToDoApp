@@ -8,43 +8,49 @@
         <div class="col-lg-10">
             <h1 class="display-4 pb-4">Új ToDo létrehozása</h1>
 
-            <form action="{{ route('todo.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('todo.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="name">ToDo címe:</label>
-                    <input type="email" class="form-control form-control-lg" id="name" name="name"
-                           placeholder="Nyári gyakorlat beadás">
+                    <label for="title">ToDo címe:</label>
+                    <input type="text" class="form-control form-control-lg" id="title" name="title" min="3" max="255"
+                           required
+                           placeholder="Nyári gyakorlat beadás" value="{{ old('title') }}">
                 </div>
 
                 <div class="form-group">
                     <label for="description">ToDo részletesebb leírása</label>
-                    <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="3" required minlength="10"
+                              maxlength="65535">{{ old('description') }}</textarea>
                 </div>
 
                 <div class="form-group">
                     <label for="deadline">Határidő: </label>
-                    <input type="date" id="deadline" name="deadline">
+                    <input type="datetime-local" id="deadline" name="deadline" min="2010-01-01T00:00:00"
+                           max="2022-06-30T00:00:00" value="{{ old('deadline') }}" required>
                 </div>
 
                 <div>
                     <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="emailWarn" name="emailWarn">
-                        <label class="custom-control-label" for="emailWarn">Kér e-mail-es emlékeztetőt?</label>
+                        <input type="checkbox" class="custom-control-input" id="reminder"
+                               name="reminder" {{ old('reminder')=='on'? 'checked' : ''  }}>
+                        <label class="custom-control-label" for="reminder">Kér e-mail-es emlékeztetőt?</label>
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    <div class="col-sm-10">
-                        <button type="submit" class="btn btn-outline-primary">Mentés</button>
-                        <a href="{{ route('todo.index') }}">
-                            <button type="button" class="btn btn-outline-danger"
-                                    title="Visszalépéssel az adatok nem kerülnek mentésre!">Visszalépés
-                            </button>
-                        </a>
-                    </div>
+                    <button type="submit" class="btn btn-outline-primary mt-2">Mentés</button>
+                    <a href="{{ route('todo.index') }}">
+                        <button type="button" class="btn btn-outline-danger mt-2 ml-2"
+                                title="Visszalépéssel az adatok nem kerülnek mentésre!">Visszalépés
+                        </button>
+                    </a>
                 </div>
             </form>
         </div>
     </div>
+
+    <p id="demo"></p>
+
+
 
 @endsection
