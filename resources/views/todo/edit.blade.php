@@ -7,6 +7,8 @@
         <div class="col-lg-10">
             <h1 class="display-4 pb-4">Új ToDo létrehozása</h1>
 
+            <x-alert/>
+
             <form action="{{ route('todo.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PATCH')

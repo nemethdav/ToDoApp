@@ -6,6 +6,8 @@
 
     <h1 class="display-4 pb-4">ToDo Listám</h1>
 
+    <x-alert/>
+
     <table class="table table-striped">
         <thead>
         <tr class="text-center">
