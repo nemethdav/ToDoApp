@@ -29,4 +29,19 @@ class TodoCreateRequest extends FormRequest
             'deadline' => 'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.required' => 'Kérem adja meg a címet!',
+            'title.max' => 'Kérem a címnek maximum 255 karakter használjon!',
+            'title.min' => 'Kérem címnek minimum 3 karaktert használjon!',
+
+            'description.required' => 'Kérem adjon meg leírást a ToDo-hoz!',
+            'description.max' => 'Kérem leírásnak maximum 65535 karaktert használjon!',
+            'description.min' => 'Kérem leírásnak minumum 10 karaktert kell tartalmaznia!',
+
+            'deadline.required' => 'Kérem adja meg a ToDo határidejét!',
+        ];
+    }
 }
