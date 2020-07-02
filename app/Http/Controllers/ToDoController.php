@@ -74,7 +74,8 @@ class ToDoController extends Controller
      */
     public function edit(ToDo $todo)
     {
-        return view('todo.edit');
+        dd($todo);
+        return view('todo.edit', compact('todo'));
     }
 
     /**
