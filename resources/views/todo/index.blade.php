@@ -22,7 +22,11 @@
 
         @forelse($todos as $todo)
             <tr class="text-center">
-                <th scope="row">{{ ($loop->index)+1 }}</th>
+                @if(!$todo->completed)
+                    <th scope="row">{{ ($loop->index)+1 }}</th>
+                @else
+                    <th scope="row">-</th>
+                @endif
                 <td><i class="fas fa-check text-black-50"/> - Kész/Nincs kész</td>
                 <td>{{ $todo->title }}</td>
                 <td>{{ $todo->deadline }}</td>
