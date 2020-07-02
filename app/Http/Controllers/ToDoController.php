@@ -20,7 +20,7 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        $todos = auth()->user()->todos()->orderBy('completed')->paginate(10);
+        $todos = auth()->user()->todos()->orderBy('completed')->orderBy('deadline')->paginate(10);
         return view('todo.index', compact('todos'));
     }
 
