@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top fixed-top">
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top fixed-top">
     <a class="navbar-brand" href="{{ route('todo.index') }}">{{config('app.name')}}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01"
             aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">

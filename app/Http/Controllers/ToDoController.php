@@ -20,7 +20,8 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        return view('todo.index');
+        $todos = auth()->user()->todos()->orderBy('completed')->paginate(10);
+        return view('todo.index', compact('todos'));
     }
 
     /**
@@ -56,12 +57,13 @@ class ToDoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\ToDo $toDo
+     * @param \App\ToDo $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(ToDo $toDo)
+    public function show(ToDo $todo)
     {
-        return view('todo.show');
+        dd($todo);
+        return view('todo.show', compact('toDo'));
     }
 
     /**
@@ -70,7 +72,7 @@ class ToDoController extends Controller
      * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
-    public function edit(ToDo $toDo)
+    public function edit(ToDo $todo)
     {
         return view('todo.edit');
     }
