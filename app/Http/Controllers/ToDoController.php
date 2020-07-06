@@ -100,4 +100,16 @@ class ToDoController extends Controller
     {
         //
     }
+
+    public function complete(ToDo $todo)
+    {
+        $todo->update(['completed' => true]);
+        return redirect()->back()->with('message', 'ToDo megjelölve elvégzett feladatként!');
+    }
+
+    public function incomplete(ToDo $todo)
+    {
+        $todo->update(['completed' => false]);
+        return redirect()->back()->with('message', 'ToDo megjelölve elvégzésre váró feladatként!');
+    }
 }

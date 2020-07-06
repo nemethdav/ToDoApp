@@ -51,8 +51,6 @@
         </div>
     </div>
 
-    <p id="demo"></p>
-
-
+    <script src="{{ asset('js/datetime.js') }}" defer></script>
 
 @endsection

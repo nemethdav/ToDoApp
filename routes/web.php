@@ -27,3 +27,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/todo', 'ToDoController');
+Route::patch('/todos/{todo}/complete', 'TodoController@complete')->name('todo.complete');
+Route::patch('/todos/{todo}/incomplete', 'TodoController@incomplete')->name('todo.incomplete');

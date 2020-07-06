@@ -27,8 +27,18 @@
                 @else
                     <th scope="row">-</th>
                 @endif
-                <td><i class="fas fa-check text-black-50"/> - Kész/Nincs kész</td>
-                <td>{{ $todo->title }}</td>
+                <td>
+                    @include('todo.complete-button')
+                </td>
+                @if ($todo->completed)
+                    <td>
+                        <s>{{ $todo->title }}</s>
+                    </td>
+                @else
+                    <td>
+                        {{ $todo->title }}
+                    </td>
+                @endif
                 <td>{{ $todo->deadline }}</td>
                 <td class="d-flex justify-content-center">
 

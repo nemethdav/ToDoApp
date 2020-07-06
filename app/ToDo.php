@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ToDo extends Model
 {
-    protected $fillable = ['title', 'description', 'deadline', 'reminder'];
+    protected $fillable = ['title', 'description', 'deadline', 'reminder', 'completed'];
 
     public function user()
     {
