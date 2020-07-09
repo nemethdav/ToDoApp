@@ -79,24 +79,41 @@ class ToDoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\ToDo $toDo
+     * @param \App\ToDo $todo
      * @return \Illuminate\Http\Response
      */
     public function edit(ToDo $todo)
     {
-        return view('todo.edit', compact('todo'));
+        define('HTML_DATETIME_LOCAL', "Y-m-d\TH:i");
+        $php_timestamp = strtotime($todo->deadline);
+        $html_datetime_string = date(HTML_DATETIME_LOCAL, $php_timestamp);
+
+        return view('todo.edit', compact(['todo', 'html_datetime_string']));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\ToDo $toDo
+     * @param \App\ToDo $todo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ToDo $toDo)
+    public function update(TodoCreateRequest $request, ToDo $todo)
     {
-        //
+        try {
+            $reminder = ($request->reminder == 'on' ? true : false);
+            $completed = ($request->completed == 'on' ? true : false);
+            $todo->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'completed' => $completed,
+                'deadline' => $request->deadline,
+                'reminder' => $reminder
+            ]);
+            return redirect(route('todo.index'))->with('message', 'ToDo sikeresen szerkesztve');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Hiba a ToDo szerkesztésekor!');
+        }
     }
 
     /**
@@ -105,7 +122,7 @@ class ToDoController extends Controller
      * @param \App\ToDo $toDo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ToDo $toDo)
+    public function destroy(ToDo $todo)
     {
         //
     }

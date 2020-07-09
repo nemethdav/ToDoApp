@@ -18,14 +18,16 @@
             <div>
                 <label>ToDo határideje: <span class="font-weight-bold">{{ $todo->deadline }}</span></label>
                 <div>
-                    @if ($todo->deadline < date("Y-m-d H:i:s"))
-                        <p class="text-danger font-weight-bold text-uppercase">A ToDo határideje lejárt!</p>
-                    @elseif ($days == 0)
-                        <p class="text-warning">A ToDo <b>kevesebb mint egy nap múlva</b> lesz esedékes!</p>
-                    @elseif ($days < 3)
-                        <p class="text-warning">A ToDo <b>{{ $days }} nap</b> múlva esedékes lesz!</p>
-                    @else
-                        <p class="text-info">A ToDo határideje {{ $days }} nap.</p>
+                    @if (!$todo->completed)
+                        @if ($todo->deadline < date("Y-m-d H:i:s"))
+                            <p class="text-danger font-weight-bold text-uppercase">A ToDo határideje lejárt!</p>
+                        @elseif ($days == 0)
+                            <p class="text-warning">A ToDo <b>kevesebb mint egy nap múlva</b> lesz esedékes!</p>
+                        @elseif ($days < 3)
+                            <p class="text-warning">A ToDo <b>{{ $days }} nap</b> múlva esedékes lesz!</p>
+                        @else
+                            <p class="text-info">A ToDo határideje {{ $days }} nap.</p>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -34,6 +36,14 @@
                 <label>E-mail-es emlékezetőt <span
                         class="font-weight-bold text-uppercase">{{ ($todo->reminder) ? '' : 'nem' }}</span> kér a
                     határidő előtt.</label>
+            </div>
+
+            <div>
+                <label>A ToDo
+                    <span class="font-weight-bold">
+                        {{ ($todo->completed)==true ? 'már elvégezve' : 'még elvégzésre vár' }}
+                    </span>.
+                </label>
             </div>
 
             <div class="mt-3">
