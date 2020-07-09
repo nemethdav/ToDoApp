@@ -124,7 +124,12 @@ class ToDoController extends Controller
      */
     public function destroy(ToDo $todo)
     {
-        //
+        try {
+            $todo->delete();
+            return redirect()->back()->with('message', 'ToDo sikeresen törölve');
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'A ToDo törlése közbe hiba lépett fel. Hibaüzenet: ' . $exception);
+        }
     }
 
     public function complete(ToDo $todo)

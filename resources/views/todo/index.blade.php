@@ -53,9 +53,19 @@
                             <span class="far fa-edit text-warning" title="ToDo szerkesztése"/>
                         </a>
                     </div>
-                    <div class="mr-3 text-danger pointer-cursor">
-                        <span class="fas fa-calendar-times text-danger"/>
 
+                    <div class="mr-3 text-danger pointer-cursor">
+                        <span class="fas fa-calendar-times text-danger" onclick="
+                            if(confirm('Biztosan törölni szeretné?')){
+                            document.getElementById('delete{{ $todo->id }}').submit()
+                            }
+                            "/>
+
+                        <form action="{{ route('todo.destroy', $todo->id) }}" method="POST" style="display: none"
+                              id={{ 'delete'.$todo->id }}>
+                            @csrf
+                            @method('DELETE')
+                        </form>
                     </div>
 
                 </td>
