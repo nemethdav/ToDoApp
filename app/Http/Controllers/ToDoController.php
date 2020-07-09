@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TodoCreateRequest;
 use App\ToDo;
 use Illuminate\Http\Request;
+use DateTime;
 
 class ToDoController extends Controller
 {
@@ -62,8 +63,14 @@ class ToDoController extends Controller
      */
     public function show(ToDo $todo)
     {
-        dd($todo);
-        return view('todo.show', compact('toDo'));
+        $deadline = $todo->deadline;
+        $now = date("Y-m-d H:i:s");
+        $datetime1 = new DateTime($deadline);
+        $datetime2 = new DateTime($now);
+        $interval = $datetime1->diff($datetime2);
+        $days = $interval->format('%a');
+
+        return view('todo.show', compact(['todo', 'days']));
     }
 
     /**
@@ -74,7 +81,6 @@ class ToDoController extends Controller
      */
     public function edit(ToDo $todo)
     {
-        dd($todo);
         return view('todo.edit', compact('todo'));
     }
 
