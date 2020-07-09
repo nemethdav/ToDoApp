@@ -63,14 +63,17 @@ class ToDoController extends Controller
      */
     public function show(ToDo $todo)
     {
-        $deadline = $todo->deadline;
-        $now = date("Y-m-d H:i:s");
-        $datetime1 = new DateTime($deadline);
-        $datetime2 = new DateTime($now);
-        $interval = $datetime1->diff($datetime2);
-        $days = $interval->format('%a');
-
-        return view('todo.show', compact(['todo', 'days']));
+        try {
+            $deadline = $todo->deadline;
+            $now = date("Y-m-d H:i:s");
+            $datetime1 = new DateTime($deadline);
+            $datetime2 = new DateTime($now);
+            $interval = $datetime1->diff($datetime2);
+            $days = $interval->format('%a');
+            return view('todo.show', compact(['todo', 'days']));
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', 'Hiba a dátum meghatározásakor! Hiba:' . $exception->getMessage());
+        }
     }
 
     /**
