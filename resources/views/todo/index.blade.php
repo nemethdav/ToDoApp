@@ -8,7 +8,35 @@
 
     <x-alert/>
 
-    <table class="table table-striped">
+    <div class="form-row">
+        <span class="d-flex justify-content-end col-12 mb-3">
+            <input type="text" class="form-control col-3 search" id="search" onkeyup="search()"
+                   placeholder="Keresés ToDo címe alapján...">
+        </span>
+    </div>
+
+    <script>
+        function search() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("search");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("table");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+
+    <table class="table table-striped" id="table">
         <thead>
         <tr class="text-center">
             <th scope="col">Sorszám</th>

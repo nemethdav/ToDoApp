@@ -16,6 +16,15 @@
         .pointer-cursor {
             cursor: pointer;
         }
+
+        .search {
+            background-image: url({{ asset('storage/icons/search_icon.png') }});
+            background-position: 6px 6px;
+            background-repeat: no-repeat;
+            width: 100%;
+            font-size: 16px;
+            padding: 12px 20px 12px 40px;
+        }
     </style>
 
     <!--Icons -->
