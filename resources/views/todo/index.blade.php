@@ -41,7 +41,7 @@
         <tr class="text-center">
             <th scope="col">Sorszám</th>
             <th scope="col">Kész</th>
-            <th scope="col">Név</th>
+            <th scope="col">Cím</th>
             <th scope="col">Határidő</th>
             <th scope="col">Műveletek</th>
         </tr>
