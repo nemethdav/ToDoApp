@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 
 Route::group(['prefix' => 'admin'], function () {
@@ -23,8 +23,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('/todo', 'ToDoController');
 Route::patch('/todos/{todo}/complete', 'TodoController@complete')->name('todo.complete');
