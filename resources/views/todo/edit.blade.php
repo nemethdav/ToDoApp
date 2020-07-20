@@ -62,4 +62,8 @@
             </form>
         </div>
     </div>
+
+    <!-- JS file -->
+    <script type="text/javascript" src="{{ asset('js/datetime.js') }}" defer></script>
+
 @endsection

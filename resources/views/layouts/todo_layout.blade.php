@@ -25,6 +25,29 @@
             font-size: 16px;
             padding: 12px 20px 12px 40px;
         }
+
+        /*Table sorting style*/
+        .table-sortable th {
+            cursor: pointer;
+        }
+
+        .table-sortable .th-sort-asc::after {
+            content: "\25b4";
+        }
+
+        .table-sortable .th-sort-desc::after {
+            content: "\25be";
+        }
+
+        .table-sortable .th-sort-asc::after,
+        .table-sortable .th-sort-desc::after {
+            margin-left: 5px;
+        }
+
+        .table-sortable .th-sort-asc,
+        .table-sortable .th-sort-desc {
+            background: rgba(0, 0, 0, 0.1);
+        }
     </style>
 
     <!--Icons -->

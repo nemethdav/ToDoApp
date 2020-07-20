@@ -51,6 +51,7 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/datetime.js') }}" defer></script>
+    <!-- JS file -->
+    <script type="text/javascript" src="{{ asset('js/datetime.js') }}" defer></script>
 
 @endsection
