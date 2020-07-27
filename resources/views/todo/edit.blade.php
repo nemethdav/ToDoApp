@@ -27,19 +27,31 @@
 
                 <div class="form-group">
                     <label for="deadline">Határidő: </label>
-                    <input type="datetime-local" id="deadline" name="deadline" min="2010-01-01T00:00:00"
-                           max="2022-06-30T00:00:00"
+                    <input type="datetime-local" id="deadline" name="deadline"
                            value="{{ old('deadline') == null ? $html_datetime_string : old('deadline')  }}" required>
                 </div>
 
-                <div>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="reminder"
-                               name="reminder" {{ (($todo->reminder == true) ? 'checked' : '') }}>
-                        <label class="custom-control-label" for="reminder">Kér e-mail-es
-                            emlékeztetőt?</label>
-                    </div>
+                <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="reminder"
+                           name="reminder" {{ (($todo->reminder == true) ? 'checked' : '') }}>
+                    <label class="custom-control-label" for="reminder">Kér e-mail-es
+                        emlékeztetőt?</label>
                 </div>
+
+                @if ($todo->reminder)
+                    <div class="form-group" id="dateDiv">
+                        <label for="reminder_date">E-mail-es emlékeztető napja: </label>
+                        <input type="date" id="reminder_date" name="reminder_date"
+                               value="{{ old('reminder_date') == null ? $todo->reminder_date : old('reminder_date') }}">
+                    </div>
+                @else
+                    <div class="form-group" id="dateDiv" style="display: none">
+                        <label for="reminder_date">E-mail-es emlékeztető napja: </label>
+                        <input type="date" id="reminder_date" name="reminder_date"
+                               value="{{ old('reminder_date') == null ? $todo->reminder_date : old('reminder_date') }}"
+                               required>
+                    </div>
+                @endif
 
                 <div class="form-check mt-2">
                     <input class="form-check-input" type="checkbox"
@@ -63,7 +75,8 @@
         </div>
     </div>
 
-    <!-- JS file -->
+    <!-- JS files -->
     <script type="text/javascript" src="{{ asset('js/datetime.js') }}" defer></script>
+    <script type="text/javascript" src="{{ asset('js/hideShow.js') }}" defer></script>
 
 @endsection

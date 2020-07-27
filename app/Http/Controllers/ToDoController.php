@@ -36,11 +36,19 @@ class ToDoController extends Controller
 //    public function store(Request $request)
     {
         $reminder = ($request->reminder == 'on' ? true : false);
+
+        $reminderDate = $reminder ? $request->reminder_date : null;
+        $deadlineDate = (new DateTime($request->deadline))->format('Y-m-d');
+        //Szerveroldali ellenőrzés a dátum helyességéhez
+        if ($reminderDate > $deadlineDate)
+            return redirect()->back()->with('error', 'Az emlékeztető dátuma nem lehet később mint a határidő!');
+
         auth()->user()->todos()->create([
             'title' => $request->title,
             'description' => $request->description,
             'deadline' => $request->deadline,
-            'reminder' => $reminder
+            'reminder' => $reminder,
+            'reminder_date' => $reminderDate
         ]);
         return redirect(route('todo.index'))->with('message', 'ToDo sikeresen elmentve!');
     }
@@ -103,12 +111,20 @@ class ToDoController extends Controller
         try {
             $reminder = ($request->reminder == 'on' ? true : false);
             $completed = ($request->completed == 'on' ? true : false);
+
+            $reminderDate = $reminder ? $request->reminder_date : null;
+            $deadlineDate = (new DateTime($request->deadline))->format('Y-m-d');
+
+            if ($reminderDate > $deadlineDate)
+                return redirect()->back()->with('error', 'Az emlékeztető dátuma nem lehet később mint a határidő!');
+
             $todo->update([
                 'title' => $request->title,
                 'description' => $request->description,
                 'completed' => $completed,
                 'deadline' => $request->deadline,
-                'reminder' => $reminder
+                'reminder' => $reminder,
+                'reminder_date' => $reminderDate
             ]);
             return redirect(route('todo.index'))->with('message', 'ToDo sikeresen szerkesztve');
         } catch (\Exception $exception) {
