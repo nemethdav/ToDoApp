@@ -46,9 +46,11 @@ class SendReminderEmails extends Command
         //Get all reminder for today
         $todos = ToDo::query()
             ->with('user')
-            ->where('completed', '0')
-            ->where('completed', '1')
-            ->where('reminder_date', now()->format('Y-m-d'))
+            ->where(function ($query) {
+                $query->where('completed', '0')
+                      ->orWhere('completed', '1');
+            })
+            ->whereDate('reminder_date', now()->format('Y-m-d'))
             ->where('reminder', true)
             ->orderBy('user_id')
             ->get();
