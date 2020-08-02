@@ -18,7 +18,7 @@
         <thead>
         <tr class="text-center">
             <th scope="col">Sorszám</th>
-            <th scope="col">Kész</th>
+            <th scope="col">Állapot</th>
             <th scope="col">Cím</th>
             <th scope="col">Határidő</th>
             <th scope="col">Műveletek</th>
@@ -28,7 +28,7 @@
 
         @forelse($todos as $todo)
             <tr class="text-center">
-                @if(!$todo->completed)
+                @if($todo->completed == 0 || $todo->completed == 1)
                     <th scope="row">{{ ($loop->index)+1 }}</th>
                 @else
                     <th scope="row">-</th>
@@ -36,7 +36,7 @@
                 <td>
                     @include('todo.complete-button')
                 </td>
-                @if ($todo->completed)
+                @if ($todo->completed == 2)
                     <td>
                         <s>{{ $todo->title }}</s>
                     </td>

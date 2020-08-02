@@ -1,19 +1,29 @@
-@if($todo->completed)
-    <span class="fas fa-check text-success pointer-cursor"
+@if($todo->completed == '0')
+    <span class="fas fa-check text-danger pointer-cursor"
           onclick="document.getElementById('{{$todo->id}}-complete')
               .submit()"
-          title="Megjelölés elvégezetlen feladatként"> - Elvégzett feladat</span>
-    <form action="{{ route('todo.incomplete', $todo->id) }}" method="POST" style="display: none"
+          title="Megjelölés folyamatban lévő feldatként"> - Elvégzendő feladat</span>
+    <form action="{{ route('todo.inProgress', $todo->id) }}" method="POST" style="display: none"
+          id="{{ $todo->id.'-complete' }}">
+        @csrf
+        @method('PATCH')
+    </form>
+@elseif ($todo->completed == '1')
+    <span class="fas fa-check text-primary pointer-cursor"
+          onclick="document.getElementById('{{$todo->id}}-complete')
+              .submit()"
+          title="Megjelölés elvégzett feladatként"> - Folyamatban lévő feladat</span>
+    <form action="{{ route('todo.complete', $todo->id) }}" method="POST" style="display: none"
           id="{{ $todo->id.'-complete' }}">
         @csrf
         @method('PATCH')
     </form>
 @else
-    <span class="fas fa-check text-warning pointer-cursor"
+    <span class="fas fa-check text-success pointer-cursor"
           onclick="document.getElementById('{{$todo->id}}-complete')
               .submit()"
-          title="Megjelölés elvégzett feladatként"> - Elvégzendő feladat</span>
-    <form action="{{ route('todo.complete', $todo->id) }}" method="POST" style="display: none"
+          title="Megjelölés elvégezetlen feladatként"> - Elvégzett feladat</span>
+    <form action="{{ route('todo.incomplete', $todo->id) }}" method="POST" style="display: none"
           id="{{ $todo->id.'-complete' }}">
         @csrf
         @method('PATCH')

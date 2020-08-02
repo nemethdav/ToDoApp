@@ -121,7 +121,6 @@ class ToDoController extends Controller
             $todo->update([
                 'title' => $request->title,
                 'description' => $request->description,
-                'completed' => $completed,
                 'deadline' => $request->deadline,
                 'reminder' => $reminder,
                 'reminder_date' => $reminderDate
@@ -150,13 +149,19 @@ class ToDoController extends Controller
 
     public function complete(ToDo $todo)
     {
-        $todo->update(['completed' => true]);
+        $todo->update(['completed' => 2]);
         return redirect()->back()->with('message', 'ToDo megjelölve elvégzett feladatként!');
     }
 
     public function incomplete(ToDo $todo)
     {
-        $todo->update(['completed' => false]);
+        $todo->update(['completed' => 0]);
         return redirect()->back()->with('message', 'ToDo megjelölve elvégzésre váró feladatként!');
+    }
+
+    public function inProgress(ToDo $todo)
+    {
+        $todo->update(['completed' => 1]);
+        return redirect()->back()->with('message', 'ToDo megjelölve folyamatban lévő feladatként!');
     }
 }

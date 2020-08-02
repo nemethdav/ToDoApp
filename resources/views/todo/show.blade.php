@@ -35,7 +35,7 @@
             <div>
                 <label>E-mail-es emlékezetőt <span
                         class="font-weight-bold text-uppercase">{{ ($todo->reminder) ? '' : 'nem' }}</span> kér a
-                    határidő előtt.</label>
+                    határidő előtt</label>
                 @if ($todo->reminder)
                     <label>Az emlékeztető küldésének napja: {{ $todo->reminder_date }}</label>
                 @endif
@@ -44,8 +44,14 @@
             <div>
                 <label>A ToDo
                     <span class="font-weight-bold">
-                        {{ ($todo->completed)==true ? ' elvégezve' : ' elvégzésre vár' }}
-                    </span>.
+                        @if ($todo->completed == 0)
+                            elvégzésre vár
+                        @elseif ($todo->completed == 1)
+                            elvégzése folyamatban
+                        @else
+                            elvégezve
+                        @endif
+                    </span>
                 </label>
             </div>
 

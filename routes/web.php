@@ -27,3 +27,4 @@ Auth::routes();
 Route::resource('/todo', 'ToDoController');
 Route::patch('/todos/{todo}/complete', 'TodoController@complete')->name('todo.complete');
 Route::patch('/todos/{todo}/incomplete', 'TodoController@incomplete')->name('todo.incomplete');
+Route::patch('/todos/{todo}/inProgress', 'TodoController@inProgress')->name('todo.inProgress');

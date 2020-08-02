@@ -53,14 +53,6 @@
                     </div>
                 @endif
 
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox"
-                           {{ ($todo->completed == true) ? 'checked' : '' }} id="completed" name="completed">
-                    <label class="form-check-label" for="completed">
-                        Feladat befejezve?
-                    </label>
-                </div>
-
                 <div class="form-group row mt-3">
                     <div class="col-sm-10">
                         <button type="submit" class="btn btn-outline-primary">Mentés</button>
