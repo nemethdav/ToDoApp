@@ -6,94 +6,93 @@
 
     <title>{{ config('app.name', 'ToDo') }}</title>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Work+Sans:300&subset=latin-ext');
+        html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        body {
+            background-image: url("{{ asset('storage/landing_hatter.jpg') }}");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            color: white;
+            font-size: 36px;
+            font-family: 'Work Sans';
+        }
+        .vizKozepre {
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, 0);
+            margin-right: -50%;
+        }
+        .teljesenKozepre {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            margin-right: -50%;
+            text-align: center;
+        }
+        .lablec {
+            bottom: 0;
+            font-family: arial;
+            font-size: 16px;
+        }
+        a {
+            color:  white;
+            text-decoration: none;
+        }
+        .gomb{
+            font-family: arial;
+            font-size: 16px;
+            background-color: rgba(0, 0, 0, .5);
+            padding: 10px 20px;
+            width: 160px;
+            display: inline-block;
+        }
+
+        /*Mobilbarát rész*/
+        /*Ha a magasság 400px alatt van*/
+        @media (max-height: 400px){
+            .lablec {
+                display: none;
+            }
+        }
+    </style>
 
 </head>
 <body>
 
-<nav class="navbar navbar-light bg-light sticky-top">
-    <a class="navbar-brand" href="{{ route('welcome') }}">{{ config('app.name', 'ToDo') }}</a>
-    <div class="dropdown">
+<div class="teljesenKozepre">
+    To-Do App
+    <div>
         @if (Route::has('login'))
             <div class="top-right links">
                 @auth
-                    <a href="{{ route('todo.index') }}">
-                        <button type="button" class="btn btn-outline-dark">ToDo Lista</button>
+                    <a href="{{ route('todo.index') }}" class="gomb">
+                        ToDo Listám
                     </a>
                 @else
-                    <a href="{{ route('login') }}">
-                        <button type="button" class="btn btn-outline-dark">Bejelentkezés</button>
+                    <a href="{{ route('login') }}" class="gomb">
+                        Bejelentkezés
                     </a>
-
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}">
-                            <button type="button" class="btn btn-outline-dark">Regisztráció</button>
+                        <a href="{{ route('register') }}" class="gomb">
+                            Regisztráció
                         </a>
                     @endif
                 @endauth
             </div>
         @endif
     </div>
-</nav>
-
-
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="content col-12">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
-                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="{{ asset('storage/slideshow/slide1.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('storage/slideshow/slide2.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('storage/slideshow/slide3.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('storage/slideshow/slide4.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('storage/slideshow/slide5.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="{{ asset('storage/slideshow/slide6.jpg') }}" class="d-block w-100" alt="...">
-                    </div>
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </div>
-    </div>
 </div>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
-        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
-        crossorigin="anonymous"></script>
+<div class="vizKozepre lablec">
+    &copy; Készítette: Németh Dávid - 2020<span id="year"></span>
+</div>
+
 </body>
 </html>
