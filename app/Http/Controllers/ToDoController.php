@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TodoCreateRequest;
+use Illuminate\Pagination\Paginator;
 use App\ToDo;
 use Illuminate\Http\Request;
 use DateTime;
@@ -21,6 +22,7 @@ class ToDoController extends Controller
      */
     public function index()
     {
+        Paginator::useBootstrap();
         $todos = auth()->user()->todos()->orderBy('completed')->orderBy('deadline')->paginate(10);
         return view('todo.index', compact('todos'));
     }
@@ -80,7 +82,7 @@ class ToDoController extends Controller
             $days = $interval->format('%a');
             return view('todo.show', compact(['todo', 'days']));
         } catch (\Exception $exception) {
-            return redirect()->back()->with('error', 'Hiba a dátum meghatározásakor! Hiba:' . $exception->getMessage());
+            return redirect()->back()->with('error', 'Hiba a hátralévő napok meghatározásakor! Hiba:' . $exception->getMessage());
         }
     }
 
