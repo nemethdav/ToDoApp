@@ -16,7 +16,7 @@
                     <label for="title">ToDo címe:</label>
                     <input type="text" class="form-control form-control-lg" id="title" name="title" min="3" max="255"
                            required
-                           placeholder="Nyári gyakorlat beadás" value="{{ old('title') }}">
+                           placeholder="Témalabor beadás határidő" value="{{ old('title') }}">
                 </div>
 
                 <div class="form-group">

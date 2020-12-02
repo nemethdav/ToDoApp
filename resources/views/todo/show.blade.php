@@ -5,7 +5,7 @@
 @section('content')
     <div class="row justify-content-center">
         <div class="col-lg-6">
-            <h1 class="display-4 pb-4">{{ $todo->title }} - részletei</h1>
+            <h1 class="display-4 pb-4">{{ $todo->title }} - ToDo részletei</h1>
 
             <div>
                 <label class="font-weight-bold h4">{{ $todo->title }}</label>

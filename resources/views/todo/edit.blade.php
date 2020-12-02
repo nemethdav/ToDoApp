@@ -1,11 +1,11 @@
 @extends('layouts.todo_layout')
 
-@section('title', $todo->title . ' szerkesztése')
+@section('title', $todo->title . ' - ToDo szerkesztés')
 
 @section('content')
     <div class="row justify-content-center">
         <div class="col-lg-10">
-            <h1 class="display-4 pb-4">{{ $todo->title }} szerkesztése</h1>
+            <h1 class="display-4 pb-4">{{ $todo->title }} - ToDo szerkesztés</h1>
 
             <x-alert/>
 
@@ -15,7 +15,7 @@
                 <div class="form-group">
                     <label for="text">ToDo címe:</label>
                     <input type="text" class="form-control form-control-lg" id="title" name="title"
-                           placeholder="Nyári gyakorlat beadás"
+                           placeholder="Témalabor beadása"
                            value="{{ old('title') == null ? $todo->title : old('title') }}">
                 </div>
 

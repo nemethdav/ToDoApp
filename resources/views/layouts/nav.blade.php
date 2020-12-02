@@ -30,6 +30,7 @@
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             @if(Auth::user()->role_id == 1)
                 <a class="dropdown-item" href="{{ '/admin' }}" target="_blank">Admin Panel</a>
+                <a class="dropdown-item" href="{{ '/telescope/requests' }}" target="_blank">Telescope</a>
                 <div class="dropdown-divider"></div>
             @endif
             <a class="dropdown-item" href="{{ route('logout') }}"
