@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
-                <a class="nav-link" href="/"><i class="fas fa-home"></i> Főoldal<span
+                <a class="nav-link" href="{{ route('welcome') }}"><i class="fas fa-home"></i> Főoldal<span
                         class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item {{ (request()->is('todo')) ? 'active' : '' }}">
@@ -29,8 +29,8 @@
         </button>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             @if(Auth::user()->role_id == 1)
-                <a class="dropdown-item" href="{{ '/admin' }}" target="_blank">Admin Panel</a>
-                <a class="dropdown-item" href="{{ '/telescope/requests' }}" target="_blank">Telescope</a>
+                <a class="dropdown-item" href="{{ route('voyager.dashboard') }}" target="_blank">Admin Panel</a>
+                <a class="dropdown-item" href="{{ route('telescope') }}" target="_blank">Telescope</a>
                 <div class="dropdown-divider"></div>
             @endif
             <a class="dropdown-item" href="{{ route('logout') }}"

@@ -51,7 +51,7 @@
                            value="{{ old('reminder_date') }}">
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group mt-3">
                     <button type="submit" class="btn btn-outline-primary mt-2">Mentés</button>
                     <a href="{{ route('todo.index') }}">
                         <button type="button" class="btn btn-outline-danger mt-2 ml-2"

@@ -18,8 +18,9 @@
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            color: white;
+            color: black;
             font-size: 36px;
+            font-weight: bold;
             font-family: 'Work Sans';
         }
         .vizKozepre {
@@ -51,6 +52,7 @@
             background-color: rgba(0, 0, 0, .5);
             padding: 10px 20px;
             width: 160px;
+            font-weight: normal;
             display: inline-block;
         }
 

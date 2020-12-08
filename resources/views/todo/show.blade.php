@@ -1,6 +1,6 @@
 @extends('layouts.todo_layout')
 
-@section('title', 'ToDo címe')
+@section('title', $todo->title . ' - ToDo megtekintése')
 
 @section('content')
     <div class="row justify-content-center">
